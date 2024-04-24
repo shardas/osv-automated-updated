@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  collections:
+  - kubernetes.core
+
+  tasks:
+  - name: install and subscribe openshift virtualization operator
+    kubernetes.core.k8s:
+      src: ../openshift-resources/osv-operator.yaml
+      state: present
+
+#  - name: Wait for k8s operator to be ready
+#    kubernetes.core.k8s_info:
+#      kind: Pod
+#      wait: true
+#      label_selectors:
+#        - label=value
+#      namespace: openshift-cnv
+#      wait_sleep: 5
+#      wait_timeout: 150
+
+  - name: create hyperconverged
+    kubernetes.core.k8s:
+      src: ../openshift-resources/osv-hyperconverged.yaml
+      state: present
