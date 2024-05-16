@@ -9,6 +9,11 @@
       src: ../openshift-resources/osv-operator.yaml
       state: present
 
+  - name: install and subscribe openshift migration toolkit for virtualization
+    kubernetes.core.k8s:
+      src: ../openshift-resources/mtv-operator.yaml
+      state: present
+
 #  - name: Wait for k8s operator to be ready
 #    kubernetes.core.k8s_info:
 #      kind: Pod
