@@ -6,7 +6,7 @@ metadata:
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: migration
+  name: openshift-mtv
   namespace: openshift-mtv
 spec:
   targetNamespaces:
@@ -15,15 +15,15 @@ spec:
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: mtv-operator
+  name: mtv-operator-hub
   namespace: openshift-mtv
 spec:
-  channel: release-v2.6.1
+  channel: release-v2.6
   installPlanApproval: Automatic
   name: mtv-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: "mtv-operator.2.6.1"
+  startingCSV: "mtv-operator.v2.6.1"
 ---
 apiVersion: forklift.konveyor.io/v1beta1
 kind: ForkliftController
@@ -31,4 +31,6 @@ metadata:
   name: forklift-controller
   namespace: openshift-mtv
 spec:
-  olm_managed: true
+  feature_ui_plugin: 'true'
+  feature_validation: 'true'
+  feature_volume_populator: 'true'

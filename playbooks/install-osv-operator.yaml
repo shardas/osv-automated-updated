@@ -28,3 +28,8 @@
     kubernetes.core.k8s:
       src: ../openshift-resources/osv-hyperconverged.yaml
       state: present
+
+  - name: install and subscribe openshift pipelines operator
+    kubernetes.core.k8s:
+      src: ../openshift-resources/pipelines-operator.yaml
+      state: present
