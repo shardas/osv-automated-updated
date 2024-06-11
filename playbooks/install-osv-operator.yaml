@@ -4,6 +4,11 @@
   - kubernetes.core
 
   tasks:
+  - name: install and subscribe openshift pipelines operator
+    kubernetes.core.k8s:
+      src: ../openshift-resources/pipelines-operator.yaml
+      state: present
+
   - name: install and subscribe openshift virtualization operator
     kubernetes.core.k8s:
       src: ../openshift-resources/osv-operator.yaml
@@ -14,6 +19,7 @@
       src: ../openshift-resources/mtv-operator.yaml
       state: present
 
+# Please enable and test this for final
 #  - name: Wait for k8s operator to be ready
 #    kubernetes.core.k8s_info:
 #      kind: Pod
@@ -27,9 +33,4 @@
   - name: create hyperconverged
     kubernetes.core.k8s:
       src: ../openshift-resources/osv-hyperconverged.yaml
-      state: present
-
-  - name: install and subscribe openshift pipelines operator
-    kubernetes.core.k8s:
-      src: ../openshift-resources/pipelines-operator.yaml
       state: present
